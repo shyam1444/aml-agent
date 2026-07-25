@@ -84,7 +84,7 @@ st.markdown("""
         margin-bottom: 8px;
     }
 </style>
-""", unsafe_allow_cookies=True)
+""", unsafe_allow_html=True)
 
 # Header Section
 st.markdown('<div class="main-header">🛡️ AI-Powered AML Suspicious Activity Detection Agent</div>', unsafe_allow_html=True)
