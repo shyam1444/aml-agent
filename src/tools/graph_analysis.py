@@ -4,6 +4,7 @@ Constructs directed transaction graphs, extracts subgraphs, detects cycles, and 
 """
 
 from typing import Any
+# pyrefly: ignore [untyped-import]
 import networkx as nx
 # pyrefly: ignore [missing-import]
 import polars as pl
@@ -16,6 +17,7 @@ def build_transaction_graph(df: pl.DataFrame) -> nx.DiGraph:
     """
     G = nx.DiGraph()
     if df is None or len(df) == 0:
+        # pyrefly: ignore [bad-return]
         return G
 
     # Iterate over polars rows
@@ -26,11 +28,16 @@ def build_transaction_graph(df: pl.DataFrame) -> nx.DiGraph:
         ts = str(row.get("Timestamp", ""))
         fmt = str(row.get("Payment Format", ""))
 
+        # pyrefly: ignore [missing-attribute]
         if G.has_edge(src, dst):
+            # pyrefly: ignore [bad-index]
             G[src][dst]["weight"] += amt
+            # pyrefly: ignore [bad-index]
             G[src][dst]["count"] += 1
+            # pyrefly: ignore [bad-index]
             G[src][dst]["transactions"].append({"amount": amt, "timestamp": ts, "format": fmt})
         else:
+            # pyrefly: ignore [missing-attribute]
             G.add_edge(
                 src,
                 dst,
@@ -39,6 +46,7 @@ def build_transaction_graph(df: pl.DataFrame) -> nx.DiGraph:
                 transactions=[{"amount": amt, "timestamp": ts, "format": fmt}]
             )
 
+    # pyrefly: ignore [bad-return]
     return G
 
 
@@ -53,7 +61,9 @@ def compute_graph_metrics(G: nx.DiGraph) -> dict[str, dict[str, float]]:
     if len(G) == 0:
         return {}
 
+    # pyrefly: ignore [no-matching-overload]
     in_degrees = dict(G.in_degree())
+    # pyrefly: ignore [no-matching-overload]
     out_degrees = dict(G.out_degree())
     in_cent = nx.in_degree_centrality(G)
     out_cent = nx.out_degree_centrality(G)

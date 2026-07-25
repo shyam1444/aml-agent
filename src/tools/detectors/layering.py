@@ -5,6 +5,7 @@ Uses NetworkX directed simple paths with amount conservation checks (allowing 2-
 """
 
 from typing import Any
+# pyrefly: ignore [untyped-import]
 import networkx as nx
 # pyrefly: ignore [missing-import]
 import polars as pl
@@ -39,6 +40,7 @@ def detect_layering(
     flagged_entities_map = {}
 
     # Sample nodes with both in and out degree to find intermediate chain links
+    # pyrefly: ignore [unsupported-operation]
     nodes_with_in_out = [n for n in G.nodes() if G.in_degree(n) > 0 and G.out_degree(n) > 0]
 
     for source in list(G.nodes()):
@@ -51,6 +53,7 @@ def detect_layering(
                 continue
 
             try:
+                # pyrefly: ignore [bad-argument-type]
                 paths = list(nx.all_simple_paths(G, source=source, target=target, cutoff=max_hops))
             except Exception:
                 continue

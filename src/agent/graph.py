@@ -97,6 +97,7 @@ def build_aml_agent_graph():
     """
     Constructs the LangGraph StateGraph workflow for AML Detection.
     """
+    # pyrefly: ignore [bad-specialization]
     workflow = StateGraph(AgentState)
 
     # 1. Add Core Nodes
@@ -150,9 +151,11 @@ def build_aml_agent_graph():
         "human_in_the_loop": END
     }
 
+    # pyrefly: ignore [bad-argument-type]
     workflow.add_conditional_edges("planner", route_next_step, router_mapping)
 
     for n in node_keys:
+        # pyrefly: ignore [bad-argument-type]
         workflow.add_conditional_edges(n, route_next_step, router_mapping)
 
     return workflow.compile()

@@ -48,6 +48,7 @@ def apply_time_filter(df: pl.DataFrame, days: int | None = None, start_date: str
     max_dt = valid_ts_df["parsed_timestamp"].max()
 
     if days is not None:
+        # pyrefly: ignore [unsupported-operation]
         min_dt = max_dt - timedelta(days=days)
         return valid_ts_df.filter(pl.col("parsed_timestamp") >= min_dt)
 
@@ -70,6 +71,7 @@ def apply_entity_filter(df: pl.DataFrame, entity_ids: list[str]) -> pl.DataFrame
         return df
 
     # Search in both Account (sender) and Account.1 (receiver)
+    # pyrefly: ignore [unnecessary-type-conversion]
     clean_ids = [str(e).strip() for e in entity_ids]
     
     # Also handle numeric account matching (e.g. 4521 -> ACC_4521)

@@ -16,7 +16,7 @@ import pandas as pd
 import numpy as np
 # pyrefly: ignore [missing-import]
 import matplotlib.pyplot as plt
-# pyrefly: ignore [missing-import]
+# pyrefly: ignore [missing-import, untyped-import]
 import seaborn as sns
 # pyrefly: ignore [missing-import]
 from pyvis.network import Network
@@ -366,6 +366,7 @@ if nav_category == "🔍 Suspicious Activity Investigation":
     if st.button("🚀 Execute Agent Investigation", type="primary", use_container_width=True) or "agent_result" not in st.session_state or preset_query:
         with st.spinner("LangGraph Agent parsing intent & orchestrating tool pipeline..."):
             start_t = time.time()
+            # pyrefly: ignore [bad-argument-type]
             result_state = run_aml_agent(user_query)
             tot_time = (time.time() - start_t) * 1000.0
             st.session_state["agent_result"] = result_state
@@ -451,6 +452,7 @@ elif nav_category == "📊 Executive Risk Dashboard":
     
     # Dynamically compute dataset metrics
     total_acc_count = len(df_dataset["Account"].unique()) if "Account" in df_dataset.columns else len(df_dataset)
+    # pyrefly: ignore [unnecessary-type-conversion]
     launder_count = int(df_dataset.filter(pl.col("Is Laundering") == 1).height) if "Is Laundering" in df_dataset.columns else 12
     normal_count = len(df_dataset) - launder_count
 

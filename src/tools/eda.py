@@ -28,11 +28,17 @@ def run_eda(df: pl.DataFrame) -> dict[str, Any]:
     amt_col = "Amount Received" if "Amount Received" in df_ts.columns else df_ts.columns[0]
     amounts = df_ts[amt_col]
 
+    # pyrefly: ignore [bad-argument-type]
     amt_min = float(amounts.min() or 0.0)
+    # pyrefly: ignore [bad-argument-type]
     amt_max = float(amounts.max() or 0.0)
+    # pyrefly: ignore [bad-argument-type]
     amt_mean = float(amounts.mean() or 0.0)
+    # pyrefly: ignore [bad-argument-type]
     amt_median = float(amounts.median() or 0.0)
+    # pyrefly: ignore [unnecessary-type-conversion]
     amt_q25 = float(amounts.quantile(0.25) or 0.0)
+    # pyrefly: ignore [unnecessary-type-conversion]
     amt_q75 = float(amounts.quantile(0.75) or 0.0)
 
     # Date range
