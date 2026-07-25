@@ -501,7 +501,7 @@ elif nav_category == "🕸️ Network Topology Explorer":
 
     try:
         G = build_transaction_graph(df_dataset)
-        net = Network(height="540px", width="100%", directed=True, bgcolor="#FFFFFF", font_color="#0F172A")
+        net = Network(height="560px", width="100%", directed=True, bgcolor="#FFFFFF", font_color="#0F172A")
         
         result_state = st.session_state.get("agent_result", {})
         flagged = result_state.get("flagged", [])
@@ -516,13 +516,17 @@ elif nav_category == "🕸️ Network Topology Explorer":
         if not sub_nodes:
             sub_nodes = set(list(G.nodes())[:18])
 
+        # 🕸️ 3. Enhanced Network Topology PyVis Node & Edge Styling
         for n in sub_nodes:
-            color = "#EF4444" if n in flagged_ids else "#2563EB"
-            net.add_node(n, label=n, color=color, title=f"Account: {n}")
+            if n in flagged_ids:
+                net.add_node(n, label=f"⚠️ {n}", color="#EF4444", shape="dot", size=26, title=f"FLAGGED SUBJECT ACCOUNT: {n}")
+            else:
+                net.add_node(n, label=str(n), color="#2563EB", shape="dot", size=18, title=f"Account: {n}")
 
         for u, v, data in G.edges(data=True):
             if u in sub_nodes and v in sub_nodes:
-                net.add_edge(u, v, title=f"${data.get('weight', 0):,.2f}")
+                w = data.get('weight', 0)
+                net.add_edge(u, v, value=w, title=f"Transfer Amount: ${w:,.2f}", arrows="to", color="#94A3B8")
 
         net_html_path = "data/network.html"
         os.makedirs("data", exist_ok=True)
@@ -531,7 +535,7 @@ elif nav_category == "🕸️ Network Topology Explorer":
         with open(net_html_path, "r", encoding="utf-8") as f:
             html_content = f.read()
 
-        components.html(html_content, height=560)
+        components.html(html_content, height=580)
     except Exception as e:
         st.info(f"Graph visualization note: {str(e)}")
 
