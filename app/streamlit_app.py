@@ -330,21 +330,34 @@ if nav_category == "🔍 Suspicious Activity Investigation":
     # Query Input & Canonical Presets
     st.markdown("### 🔍 Query & Triage Console")
     
-    st.markdown("**Canonical Triage Shortcuts**")
-    col_p1, col_p2, col_p3 = st.columns(3)
+    st.markdown("**Real-Time Compliance Query Shortcuts**")
     preset_query = None
-
+    
+    col_p1, col_p2, col_p3 = st.columns(3)
     with col_p1:
-        if st.button("⚡ Path 1: Structuring (Last 30 Days)", use_container_width=True):
+        if st.button("⚡ 1. Structuring (Last 30 Days)", use_container_width=True):
             preset_query = "Find structuring patterns in the last 30 days"
 
     with col_p2:
-        if st.button("⚡ Path 2: Threshold Rule (10+ Tx under $10k)", use_container_width=True):
+        if st.button("⚡ 2. Threshold Rule ($10k Limit)", use_container_width=True):
             preset_query = "Which customers made 10+ transactions under $10,000?"
 
     with col_p3:
-        if st.button("⚡ Path 3: Entity Lookup (Customer 4521)", use_container_width=True):
+        if st.button("⚡ 3. Entity Lookup (Cust 4521)", use_container_width=True):
             preset_query = "Is customer ID 4521 suspicious?"
+
+    col_p4, col_p5, col_p6 = st.columns(3)
+    with col_p4:
+        if st.button("⚡ 4. Smurfing Graph Analysis", use_container_width=True):
+            preset_query = "Detect smurfing fan-in patterns with 5+ senders"
+
+    with col_p5:
+        if st.button("⚡ 5. Rapid Cash-Out Detection", use_container_width=True):
+            preset_query = "Find rapid cashout transfers after large inbound deposits"
+
+    with col_p6:
+        if st.button("⚡ 6. Multi-Hop Layering Chains", use_container_width=True):
+            preset_query = "Identify 3+ hop layering chains with fee attrition"
 
     default_query = preset_query or st.session_state.get("current_query", "Find structuring patterns in the last 30 days")
     user_query = st.text_input("Enter natural language AML query:", value=default_query)
