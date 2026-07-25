@@ -11,13 +11,19 @@ import sys
 import os
 from pathlib import Path
 import time
+# pyrefly: ignore [missing-import]
 import streamlit as st
+# pyrefly: ignore [missing-import]
 import polars as pl
 import pandas as pd
+# pyrefly: ignore [missing-import]
 import numpy as np
+# pyrefly: ignore [missing-import]
 import matplotlib.pyplot as plt
 import seaborn as sns
+# pyrefly: ignore [missing-import]
 from pyvis.network import Network
+# pyrefly: ignore [missing-import]
 import streamlit.components.v1 as components
 
 # Ensure project root is in sys.path

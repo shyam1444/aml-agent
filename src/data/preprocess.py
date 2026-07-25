@@ -4,6 +4,7 @@ Polars-based fast filtering operations.
 """
 
 from datetime import datetime, timedelta
+# pyrefly: ignore [missing-import]
 import polars as pl
 
 

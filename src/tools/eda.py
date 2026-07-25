@@ -4,6 +4,7 @@ Profiles transaction dataset, computes summary statistics, amount quantiles, vel
 """
 
 from typing import Any
+# pyrefly: ignore [missing-import]
 import polars as pl
 from src.data.preprocess import parse_timestamp_column
 

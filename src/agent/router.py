@@ -5,6 +5,7 @@ Appends detailed TraceEntry records for every step executed.
 
 import time
 from typing import Any
+# pyrefly: ignore [missing-import]
 import polars as pl
 
 from src.agent.state import AgentState, TraceEntry, PlanStep

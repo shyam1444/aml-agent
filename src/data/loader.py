@@ -8,7 +8,9 @@ Generates compliant IBM AML formatted dataset (HI-Small_Trans.csv) with ground-t
 from pathlib import Path
 import random
 from datetime import datetime, timedelta
+# pyrefly: ignore [missing-import]
 import polars as pl
+# pyrefly: ignore [missing-import]
 import numpy as np
 
 

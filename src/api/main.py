@@ -9,8 +9,11 @@ Endpoints:
 
 import os
 from typing import Any
+# pyrefly: ignore [missing-import]
 from fastapi import FastAPI, HTTPException
+# pyrefly: ignore [missing-import]
 from fastapi.middleware.cors import CORSMiddleware
+# pyrefly: ignore [missing-import]
 from pydantic import BaseModel
 import yaml
 
@@ -113,5 +116,6 @@ def analyze_query(req: AnalyzeRequest):
 
 
 if __name__ == "__main__":
+    # pyrefly: ignore [missing-import]
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

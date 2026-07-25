@@ -9,8 +9,10 @@ Computes:
 
 import sys
 from pathlib import Path
+# pyrefly: ignore [missing-import]
 import polars as pl
 import pandas as pd
+# pyrefly: ignore [missing-import]
 import numpy as np
 from sklearn.metrics import (
     precision_score, recall_score, f1_score, precision_recall_curve, auc, confusion_matrix

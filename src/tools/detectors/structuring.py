@@ -5,6 +5,7 @@ Pattern: Multiple transactions in [0.85 * threshold, threshold) per customer wit
 """
 
 from typing import Any
+# pyrefly: ignore [missing-import]
 import polars as pl
 from src.data.preprocess import parse_timestamp_column
 

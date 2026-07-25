@@ -6,7 +6,9 @@ and canonical query execution paths.
 
 import sys
 from pathlib import Path
+# pyrefly: ignore [missing-import]
 import pytest
+# pyrefly: ignore [missing-import]
 import polars as pl
 
 # Ensure project root is in sys.path

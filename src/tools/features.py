@@ -10,7 +10,9 @@ Features:
 """
 
 from typing import Any
+# pyrefly: ignore [missing-import]
 import numpy as np
+# pyrefly: ignore [missing-import]
 import polars as pl
 from src.tools.graph_analysis import build_transaction_graph, compute_graph_metrics
 

@@ -5,6 +5,7 @@ Catches sudden behavior shifts.
 """
 
 from typing import Any
+# pyrefly: ignore [missing-import]
 import polars as pl
 
 

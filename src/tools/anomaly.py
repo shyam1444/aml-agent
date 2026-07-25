@@ -4,7 +4,9 @@ Computes ML anomaly scores per entity, normalized to [0.0, 1.0].
 """
 
 from typing import Any
+# pyrefly: ignore [missing-import]
 import numpy as np
+# pyrefly: ignore [missing-import]
 import polars as pl
 from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor

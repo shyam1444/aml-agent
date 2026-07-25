@@ -6,8 +6,11 @@ Stage 2: LLM verbalization using Groq Llama 3.3 70B (with offline deterministic 
 
 import os
 from typing import Any
+# pyrefly: ignore [missing-import]
 import numpy as np
+# pyrefly: ignore [missing-import]
 import shap
+# pyrefly: ignore [missing-import]
 from groq import Groq
 
 

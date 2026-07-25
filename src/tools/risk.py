@@ -6,6 +6,7 @@ Assigns Risk Bands (Low, Medium, High) and Escalation Recommendations (Monitor, 
 """
 
 from typing import Any
+# pyrefly: ignore [missing-import]
 import polars as pl
 
 
