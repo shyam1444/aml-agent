@@ -287,6 +287,16 @@ with st.sidebar:
     df_dataset = load_dataset()
     st.caption(f"Active Monitoring Pool: **{len(df_dataset):,} transactions**")
 
+    st.divider()
+
+    st.markdown("### 🔑 Groq LLM Engine")
+    groq_input = st.text_input("Groq API Key", type="password", value=os.getenv("GROQ_API_KEY", ""), help="Get free key at console.groq.com")
+    if groq_input.strip():
+        os.environ["GROQ_API_KEY"] = groq_input.strip()
+        st.success("🟢 Groq Llama 3.3 70B Connected & Active!")
+    else:
+        st.info("ℹ️ Running in Offline Mode (Set GROQ_API_KEY for live Groq Llama 3.3 LLM responses)")
+
 
 
 
