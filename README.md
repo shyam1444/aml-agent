@@ -1,4 +1,4 @@
-# AI-Powered Suspicious Activity Detection Agent (AML Compliance Platform)
+# AegisAML — Autonomous AI-Powered Suspicious Activity Detection Agent
 
 [![Python 3.14](https://img.shields.io/badge/python-3.14-blue.svg)](https://www.python.org/)
 [![LangGraph](https://img.shields.io/badge/Orchestration-LangGraph-orange.svg)](https://github.com/langchain-ai/langgraph)
@@ -7,23 +7,21 @@
 [![FastAPI](https://img.shields.io/badge/API-FastAPI-teal.svg)](https://fastapi.tiangolo.com/)
 [![Streamlit](https://img.shields.io/badge/Frontend-Streamlit-red.svg)](https://streamlit.io/)
 
-An autonomous, query-adaptive Anti-Money Laundering (AML) agent that dynamically plans and orchestrates compliance analysis workflows. Built using **LangGraph**, **Groq Llama 3.3 70B**, **Polars**, **scikit-learn**, **NetworkX**, and **SHAP**.
-
-**Website URL**: https://aml-agent.streamlit.app/
+An autonomous, query-adaptive Anti-Money Laundering (AML) platform that dynamically plans and orchestrates compliance analysis workflows. Built using **LangGraph**, **Groq Llama 3.3 70B**, **Polars**, **scikit-learn**, **NetworkX**, **SHAP**, and **PyVis**.
 
 ---
 
 ## 1. Executive Problem Summary
 
-Financial institutions worldwide spend billions annually managing rule-based Anti-Money Laundering (AML) software. However, legacy rule systems generate up to **95% false positives**, overwhelming compliance teams while sophisticated laundering techniques—such as **structuring**, **smurfing**, **layering**, and **round-tripping**—evade detection.
+Financial institutions worldwide spend billions annually managing legacy rule-based Anti-Money Laundering (AML) software. However, rule-based systems generate up to **95% false positives**, overwhelming compliance teams while sophisticated laundering techniques—such as **structuring**, **smurfing**, **layering**, and **round-tripping**—evade detection.
 
 ### Solution
 
-This platform implements an **intelligent, query-adaptive agent** that:
+AegisAML implements an **intelligent, query-adaptive agent** that:
 1. Parses natural language compliance requests into structured intent and filters.
-2. Dynamically constructs an execution plan invoking **only** the required tools for that query.
+2. Dynamically constructs an execution plan invoking **only** the required tools for that specific query.
 3. Applies hybrid detection (rule detectors + ML IsolationForest/LOF + NetworkX graph topology search).
-4. Delivers **SHAP-grounded**, explainable risk scores with concrete numeric evidence.
+4. Renders **visual SHAP feature attributions** and **FinCEN SAR Regulatory Dossier exports**.
 5. Reduces false positives by **78.4%** compared to traditional threshold rules.
 
 ---
@@ -66,7 +64,7 @@ This platform implements an **intelligent, query-adaptive agent** that:
 
 ---
 
-## 3. Canonical Query Execution Paths
+## 3. Canonical Query Execution Paths & Skipped Tools Rationale
 
 | User Query | Intent Type | Dynamic Execution Path | Skipped Tools & Rationale |
 | :--- | :--- | :--- | :--- |
@@ -76,7 +74,18 @@ This platform implements an **intelligent, query-adaptive agent** that:
 
 ---
 
-## 4. Benchmark Dataset Information
+## 4. Key Platform Features
+
+- 📄 **FinCEN SAR Regulatory Dossier Generator**: Export official regulatory SAR text reports for flagged entities with 1 click.
+- 📊 **Visual SHAP Feature Impact Bar Charts**: Horizontal bar plot displaying feature attribution impact (Positive risk factors in red, mitigating factors in green).
+- 🕸️ **Interactive Network Topology Explorer**: PyVis graph visualizer highlighting flagged subject nodes (`⚠️ #EF4444`), directional transfer arrows (`arrows="to"`), and transfer dollar amounts (`$9,850.00`).
+- ⚡ **6 Real-Time Compliance Query Shortcuts**: Instant shortcut triggers for Structuring, Threshold Rules, Entity Lookup, Smurfing, Rapid Cashout, and Layering.
+- 🏢 **Modern SaaS Interface**: SaaS light theme (`#F8FAFC`), white card containers, Inter font, pill status badges, and 100% button-based sidebar navigation.
+- 🔒 **Enterprise Production Security**: Strict backend API key configuration via `.env` without client-side key exposure.
+
+---
+
+## 5. Benchmark Dataset Information
 
 - **Primary Dataset**: IBM Transactions for Anti-Money Laundering (`HI-Small_Trans.csv` variant).
   - Source URL: [Kaggle ealtman2019/ibm-transactions-for-anti-money-laundering-aml](https://www.kaggle.com/datasets/ealtman2019/ibm-transactions-for-anti-money-laundering-aml)
@@ -93,7 +102,7 @@ This platform implements an **intelligent, query-adaptive agent** that:
 
 ---
 
-## 5. Technology Stack
+## 6. Technology Stack
 
 | Layer | Choice | Rationale |
 | :--- | :--- | :--- |
@@ -109,7 +118,7 @@ This platform implements an **intelligent, query-adaptive agent** that:
 
 ---
 
-## 6. Setup & Installation
+## 7. Setup & Installation
 
 ### Prerequisites
 
@@ -119,7 +128,7 @@ This platform implements an **intelligent, query-adaptive agent** that:
 ### Step 1: Clone Repository & Create Virtual Environment
 
 ```bash
-git clone <repository_url>
+git clone https://github.com/shyam1444/aml-agent.git
 cd aml-agent
 python -m venv .venv
 # On Windows PowerShell:
@@ -134,17 +143,19 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Step 3: Set Groq API Key (Optional)
+### Step 3: Set Backend Environment Variable (Optional)
 
 ```bash
-# Optional: Set GROQ_API_KEY for Llama 3.3 LLM features.
-# If omitted, deterministic fallbacks run seamlessly.
+# Copy environment template
+cp .env.example .env
+
+# Set GROQ_API_KEY for Llama 3.3 LLM features (or set in terminal)
 $env:GROQ_API_KEY="your_groq_api_key_here"
 ```
 
 ---
 
-## 7. Running the Application
+## 8. Running the Application
 
 ### 1. Launch Interactive Streamlit Dashboard
 
@@ -174,9 +185,9 @@ pytest tests/
 
 ---
 
-## 8. Quantitative Evaluation & False Positive Reduction
+## 9. Quantitative Evaluation & False Positive Reduction
 
-| Metric | Naive Rule Baseline (> $8,500) | Agentic Hybrid Platform |
+| Metric | Naive Rule Baseline (> $8,500) | AegisAML Hybrid Platform |
 | :--- | :--- | :--- |
 | **Precision** | 0.1250 | **0.8421** |
 | **Recall** | 0.9500 | **0.9143** |
@@ -187,7 +198,7 @@ pytest tests/
 
 ---
 
-## 9. Full External Tools & AI Assistant Disclosure
+## 10. Full External Tools & AI Assistant Disclosure
 
 In compliance with hackathon guidelines, all external tools and assistants used during development are fully disclosed below:
 
