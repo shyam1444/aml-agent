@@ -234,20 +234,48 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Sidebar Navigation Category Menu
+# Sidebar Navigation Category Menu (100% Button-Based SaaS Sidebar Navigation - No Radio Bubbles)
 with st.sidebar:
-    st.markdown("### 🏢 SaaS Navigation")
+    st.markdown("### 🏢 Platform Views")
     
-    nav_category = st.radio(
-        "Platform Views",
-        [
-            "🔍 Suspicious Activity Investigation",
-            "📊 Executive Risk Dashboard",
-            "🕸️ Network Topology Explorer",
-            "⚙️ Regulatory Controls & Tuning"
-        ],
-        index=0
-    )
+    if "nav_category" not in st.session_state:
+        st.session_state["nav_category"] = "🔍 Suspicious Activity Investigation"
+
+    current_nav = st.session_state["nav_category"]
+
+    if st.button(
+        "🔍 Suspicious Activity Investigation",
+        use_container_width=True,
+        type="primary" if current_nav == "🔍 Suspicious Activity Investigation" else "secondary"
+    ):
+        st.session_state["nav_category"] = "🔍 Suspicious Activity Investigation"
+        st.rerun()
+
+    if st.button(
+        "📊 Executive Risk Dashboard",
+        use_container_width=True,
+        type="primary" if current_nav == "📊 Executive Risk Dashboard" else "secondary"
+    ):
+        st.session_state["nav_category"] = "📊 Executive Risk Dashboard"
+        st.rerun()
+
+    if st.button(
+        "🕸️ Network Topology Explorer",
+        use_container_width=True,
+        type="primary" if current_nav == "🕸️ Network Topology Explorer" else "secondary"
+    ):
+        st.session_state["nav_category"] = "🕸️ Network Topology Explorer"
+        st.rerun()
+
+    if st.button(
+        "⚙️ Regulatory Controls & Tuning",
+        use_container_width=True,
+        type="primary" if current_nav == "⚙️ Regulatory Controls & Tuning" else "secondary"
+    ):
+        st.session_state["nav_category"] = "⚙️ Regulatory Controls & Tuning"
+        st.rerun()
+
+    nav_category = st.session_state["nav_category"]
 
     st.divider()
 
