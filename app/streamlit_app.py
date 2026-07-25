@@ -286,12 +286,6 @@ with st.sidebar:
     )
     df_dataset = load_dataset()
     st.caption(f"Active Monitoring Pool: **{len(df_dataset):,} transactions**")
-
-
-
-
-
-
 # -----------------------------------------------------------------------------
 # VIEW 1: SUSPICIOUS ACTIVITY INVESTIGATION
 # -----------------------------------------------------------------------------
