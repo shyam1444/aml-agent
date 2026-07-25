@@ -158,6 +158,42 @@ st.markdown("""
         border: 1px solid #6EE7B7;
     }
 
+    /* Modern SaaS Sidebar Navigation Styling - HIDE OMR BUBBLE RADIO CIRCLES */
+    div[data-widget="stRadio"] label > div:first-child,
+    div[data-testid="stRadio"] label > div:first-child,
+    div[role="radiogroup"] label > div:first-child {
+        display: none !important;
+    }
+
+    div[data-testid="stRadio"] div[role="radiogroup"] label,
+    div[data-widget="stRadio"] div[role="radiogroup"] label {
+        padding: 10px 14px !important;
+        border-radius: 8px !important;
+        margin-bottom: 4px !important;
+        transition: all 0.15s ease !important;
+        cursor: pointer !important;
+        width: 100% !important;
+        font-weight: 500 !important;
+        color: #475569 !important;
+        background-color: transparent !important;
+        border: 1px solid transparent !important;
+    }
+
+    div[data-testid="stRadio"] div[role="radiogroup"] label:hover {
+        background-color: #F1F5F9 !important;
+        color: #0F172A !important;
+    }
+
+    /* Selected Active Sidebar Item styling */
+    div[data-testid="stRadio"] div[role="radiogroup"] label[aria-checked="true"],
+    div[data-testid="stRadio"] div[role="radiogroup"] label[data-checked="true"] {
+        background-color: #EFF6FF !important;
+        color: #1D4ED8 !important;
+        font-weight: 600 !important;
+        border-left: 3px solid #2563EB !important;
+        box-shadow: 0 1px 2px rgba(37, 99, 235, 0.05) !important;
+    }
+
     /* Streamlit UI Overrides for SaaS feel */
     .stButton>button {
         border-radius: 8px;
