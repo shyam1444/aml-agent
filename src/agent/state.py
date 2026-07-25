@@ -4,7 +4,10 @@ Strict typing ensures deterministic validation, inspectability, and demoability.
 """
 
 from typing import Literal, TypedDict, Any
+# pyrefly: ignore [missing-import]
+# pyrefly: ignore [import]
 from pydantic import BaseModel, Field
+# pyrefly: ignore [missing-import]
 import polars as pl
 
 
