@@ -99,11 +99,11 @@ def analyze_query(req: AnalyzeRequest):
 
         return {
             "query": req.query,
-            "intent": final_state.get("intent").dict() if final_state.get("intent") else None,
+            "intent": final_state.get("intent").model_dump() if final_state.get("intent") else None,
             "plan": {
                 "rationale": plan.rationale if plan else "",
-                "steps": [s.dict() for s in plan.steps] if plan else [],
-                "skipped_tools": [s.dict() for s in plan.skipped_tools] if plan else []
+                "steps": [s.model_dump() for s in plan.steps] if plan else [],
+                "skipped_tools": [s.model_dump() for s in plan.skipped_tools] if plan else []
             },
             "completed_steps": final_state.get("completed_steps", []),
             "execution_trace": final_state.get("execution_trace", []),

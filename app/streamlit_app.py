@@ -195,7 +195,7 @@ with col_t1:
 with col_t2:
     st.markdown("### ⚡ Skipped Tools Rationale")
     if plan and plan.skipped_tools:
-        skipped_df = pd.DataFrame([s.dict() for s in plan.skipped_tools])
+        skipped_df = pd.DataFrame([s.model_dump() for s in plan.skipped_tools])
         st.dataframe(skipped_df, use_container_width=True, hide_index=True)
     else:
         st.success("All tools in candidate set were invoked for broad exploration.")
