@@ -287,14 +287,7 @@ with st.sidebar:
     df_dataset = load_dataset()
     st.caption(f"Active Monitoring Pool: **{len(df_dataset):,} transactions**")
 
-    st.divider()
 
-    st.markdown("### 📈 Impact Metrics")
-    col_s1, col_s2 = st.columns(2)
-    with col_s1:
-        st.metric("FP Reduction", "78.4%", "▲ 24.2%")
-    with col_s2:
-        st.metric("PR-AUC", "0.912")
 
 
 # -----------------------------------------------------------------------------
