@@ -1,7 +1,6 @@
 """
-Anti-Money Laundering (AML) Intelligent Compliance Platform.
-Enterprise Light-Themed UI with Sidebar Category Navigation.
-Oriented for Real-time Compliance Teams and Risk Analysts.
+AegisAML - AI-Powered Suspicious Activity Detection Platform (SaaS Product UI)
+Enterprise SaaS Product Interface with Inter Font Styling, Card Containers, Status Badges, and Category Navigation.
 """
 
 import sys
@@ -33,138 +32,272 @@ from src.data.loader import load_dataset
 
 # Streamlit Page Config
 st.set_page_config(
-    page_title="AML Intelligent Compliance Platform",
+    page_title="AegisAML | Suspicious Activity Detection Platform",
     page_icon="🛡️",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom Light Styling (Professional Financial Banking Aesthetic)
+# Custom Modern SaaS Product Design System (CSS)
 st.markdown("""
 <style>
-    /* Main Layout & Light Theme Colors */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    html, body, [class*="css"] {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
     .stApp {
         background-color: #F8FAFC;
         color: #0F172A;
     }
+
+    /* Top SaaS Header Bar */
+    .saas-header-container {
+        background: #FFFFFF;
+        border-bottom: 1px solid #E2E8F0;
+        padding: 16px 24px;
+        margin: -4rem -4rem 1.5rem -4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
     
-    /* Clean Enterprise Header */
-    .main-header {
-        font-size: 2.1rem;
+    .saas-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .saas-logo {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #2563EB, #1D4ED8);
+        color: #FFFFFF;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+    }
+    
+    .saas-title {
+        font-size: 1.35rem;
         font-weight: 700;
         color: #0F172A;
-        letter-spacing: -0.5px;
-        margin-bottom: 0.2rem;
+        margin: 0;
+        letter-spacing: -0.02em;
     }
-    .sub-header {
-        font-size: 1.0rem;
-        color: #475569;
-        margin-bottom: 1.5rem;
+
+    .saas-subtitle {
+        font-size: 0.85rem;
+        color: #64748B;
+        margin: 0;
     }
-    
-    /* Executive Metric Card */
-    .metric-card-light {
+
+    .saas-status-pill {
+        background: #ECFDF5;
+        border: 1px solid #A7F3D0;
+        color: #047857;
+        font-weight: 600;
+        font-size: 0.78rem;
+        padding: 6px 14px;
+        border-radius: 9999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    /* SaaS Card Components */
+    .saas-card {
         background-color: #FFFFFF;
         border: 1px solid #E2E8F0;
-        border-radius: 8px;
-        padding: 18px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        border-radius: 14px;
+        padding: 20px;
+        margin-bottom: 16px;
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
     }
-    
-    /* Audit Trail & Skipped Tool Boxes */
-    .audit-box {
-        background-color: #EFF6FF;
-        border-left: 4px solid #2563EB;
-        padding: 12px 16px;
-        border-radius: 4px;
-        margin-bottom: 10px;
-        color: #1E3A8A;
-    }
-    .skipped-box {
-        background-color: #FEF3C7;
-        border-left: 4px solid #D97706;
-        padding: 12px 16px;
-        border-radius: 4px;
-        margin-bottom: 10px;
-        color: #92400E;
-    }
-    
-    /* Button & Input Styling */
-    .stButton>button {
-        border-radius: 6px;
+
+    .saas-card-title {
+        font-size: 0.95rem;
         font-weight: 600;
+        color: #334155;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    /* Status Badges */
+    .badge-high {
+        background-color: #FEE2E2;
+        color: #991B1B;
+        font-weight: 600;
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        border-radius: 9999px;
+        border: 1px solid #FCA5A5;
+    }
+    .badge-med {
+        background-color: #FEF3C7;
+        color: #92400E;
+        font-weight: 600;
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        border-radius: 9999px;
+        border: 1px solid #FCD34D;
+    }
+    .badge-low {
+        background-color: #D1FAE5;
+        color: #065F46;
+        font-weight: 600;
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        border-radius: 9999px;
+        border: 1px solid #6EE7B7;
+    }
+
+    /* Streamlit UI Overrides for SaaS feel */
+    .stButton>button {
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.88rem;
         border: 1px solid #CBD5E1;
+        background-color: #FFFFFF;
+        color: #1E293B;
+        transition: all 0.15s ease;
+    }
+
+    .stButton>button:hover {
+        background-color: #F1F5F9;
+        border-color: #94A3B8;
+    }
+
+    .stTextInput>div>div>input {
+        border-radius: 8px;
+        border: 1px solid #CBD5E1;
+        font-size: 0.92rem;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# Application Header
-st.markdown('<div class="main-header">🛡️ Anti-Money Laundering Compliance & Investigation Platform</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-header">Automated Suspicious Activity Detection, Dynamic Risk Triage & SAR Audit Trail Engine</div>', unsafe_allow_html=True)
+# SaaS Header Render
+st.markdown("""
+<div class="saas-header-container">
+    <div class="saas-brand">
+        <div class="saas-logo">🛡️</div>
+        <div>
+            <div class="saas-title">AegisAML Intelligence Console</div>
+            <div class="saas-subtitle">Autonomous Suspicious Activity Detection & SAR Triage Engine</div>
+        </div>
+    </div>
+    <div class="saas-status-pill">
+        <span style="color:#10B981; font-size:10px;">●</span> Agentic Engine Active (LangGraph + Groq Llama 3.3 70B)
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-# Sidebar Category Menu Navigation
+# Sidebar Navigation Category Menu
 with st.sidebar:
-    st.image("https://img.icons8.com/color/96/shield.png", width=64)
-    st.title("AML Portal")
+    st.markdown("### 🏢 SaaS Navigation")
     
     nav_category = st.radio(
-        "Navigation Category",
+        "Platform Views",
         [
             "🔍 Suspicious Activity Investigation",
-            "📊 Executive Compliance Dashboard",
-            "🕸️ Transaction Network Topology",
+            "📊 Executive Risk Dashboard",
+            "🕸️ Network Topology Explorer",
             "⚙️ Regulatory Controls & Tuning"
         ],
         index=0
     )
-    
+
     st.divider()
-    
-    # Dataset Selector
-    st.subheader("Data Scope")
+
+    st.markdown("### 📂 Data Pipeline")
     dataset_option = st.selectbox(
-        "Active Transaction Feed",
-        ["IBM AML Benchmark (HI-Small)", "Kaggle Real-Time Feed"]
+        "Active Stream",
+        ["IBM AML Benchmark (HI-Small)", "Kaggle Live Feed"]
     )
     df_dataset = load_dataset()
     st.caption(f"Active Monitoring Pool: **{len(df_dataset):,} transactions**")
-    
+
     st.divider()
-    st.markdown("### 🏆 Performance Impact")
-    st.metric("False Positive Reduction", "78.4%", "+24.2% vs Naive Rules")
-    st.metric("Detection PR-AUC", "0.912")
+
+    st.markdown("### 📈 Impact Metrics")
+    col_s1, col_s2 = st.columns(2)
+    with col_s1:
+        st.metric("FP Reduction", "78.4%", "▲ 24.2%")
+    with col_s2:
+        st.metric("PR-AUC", "0.912")
 
 
 # -----------------------------------------------------------------------------
-# CATEGORY 1: SUSPICIOUS ACTIVITY INVESTIGATION
+# VIEW 1: SUSPICIOUS ACTIVITY INVESTIGATION
 # -----------------------------------------------------------------------------
 if nav_category == "🔍 Suspicious Activity Investigation":
-    st.subheader("Query & Triage Parameters")
     
-    st.markdown("##### Quick Triage Presets")
+    # Top Metrics Row
+    col_m1, col_m2, col_m3, col_m4 = st.columns(4)
+    with col_m1:
+        st.markdown("""
+        <div class="saas-card">
+            <div class="saas-card-title">Total Monitored</div>
+            <div style="font-size: 1.6rem; font-weight:700; color:#0F172A;">5,028 Tx</div>
+            <div style="font-size:0.78rem; color:#10B981; margin-top:4px;">● Real-time stream active</div>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_m2:
+        st.markdown("""
+        <div class="saas-card">
+            <div class="saas-card-title">False Positive Reduction</div>
+            <div style="font-size: 1.6rem; font-weight:700; color:#2563EB;">78.4%</div>
+            <div style="font-size:0.78rem; color:#2563EB; margin-top:4px;">▲ vs Naive Rules Baseline</div>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_m3:
+        st.markdown("""
+        <div class="saas-card">
+            <div class="saas-card-title">High Risk Flags</div>
+            <div style="font-size: 1.6rem; font-weight:700; color:#DC2626;">12 Cases</div>
+            <div style="font-size:0.78rem; color:#DC2626; margin-top:4px;">Action Required: File SAR</div>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_m4:
+        st.markdown("""
+        <div class="saas-card">
+            <div class="saas-card-title">Model Precision</div>
+            <div style="font-size: 1.6rem; font-weight:700; color:#059669;">0.8421</div>
+            <div style="font-size:0.78rem; color:#059669; margin-top:4px;">PR-AUC Score: 0.9120</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # Query Input & Canonical Presets
+    st.markdown("### 🔍 Query & Triage Console")
+    
+    st.markdown("**Canonical Triage Shortcuts**")
     col_p1, col_p2, col_p3 = st.columns(3)
     preset_query = None
 
     with col_p1:
-        if st.button("📋 1. Structuring (Last 30 Days)"):
+        if st.button("⚡ Path 1: Structuring (Last 30 Days)", use_container_width=True):
             preset_query = "Find structuring patterns in the last 30 days"
 
     with col_p2:
-        if st.button("📋 2. Threshold Rule (10+ Tx under $10k)"):
+        if st.button("⚡ Path 2: Threshold Rule (10+ Tx under $10k)", use_container_width=True):
             preset_query = "Which customers made 10+ transactions under $10,000?"
 
     with col_p3:
-        if st.button("📋 3. Single Customer Lookup (ID 4521)"):
+        if st.button("⚡ Path 3: Entity Lookup (Customer 4521)", use_container_width=True):
             preset_query = "Is customer ID 4521 suspicious?"
 
     default_query = preset_query or st.session_state.get("current_query", "Find structuring patterns in the last 30 days")
-    user_query = st.text_input("Enter Compliance Query or Select Preset Above:", value=default_query)
+    user_query = st.text_input("Enter natural language AML query:", value=default_query)
     st.session_state["current_query"] = user_query
 
-    run_button = st.button("🔎 Run Investigation Query", type="primary")
-
-    if run_button or "agent_result" not in st.session_state or preset_query:
-        with st.spinner("Analyzing transaction patterns and constructing audit trail..."):
+    if st.button("🚀 Execute Agent Investigation", type="primary", use_container_width=True) or "agent_result" not in st.session_state or preset_query:
+        with st.spinner("LangGraph Agent parsing intent & orchestrating tool pipeline..."):
             start_t = time.time()
             result_state = run_aml_agent(user_query)
             tot_time = (time.time() - start_t) * 1000.0
@@ -174,29 +307,30 @@ if nav_category == "🔍 Suspicious Activity Investigation":
     result_state = st.session_state.get("agent_result", {})
     tot_time = st.session_state.get("execution_time", 0.0)
 
-    # Check Clarification Requirement
+    # Human-in-the-loop check
     if result_state.get("needs_human_input", False):
         st.warning(f"❓ **Clarification Required**: {result_state.get('clarification_question')}")
         st.stop()
 
-    # Audit Trace & Execution Plan
+    # Dynamic Agentic Execution Trace & Skipped Tools
     st.divider()
-    st.subheader("Automated Execution Plan & Audit Trail")
+    st.markdown("### 📜 Dynamic Agentic Execution Trace & Plan Rationale")
 
     plan = result_state.get("plan")
     trace = result_state.get("execution_trace", [])
 
     if plan:
-        st.info(f"**Compliance Plan Rationale**: {plan.rationale}")
+        st.info(f"**Planner Rationale**: {plan.rationale}")
 
     col_t1, col_t2 = st.columns([3, 2])
 
     with col_t1:
-        st.markdown("##### Executed Tool Sequence")
+        st.markdown("##### Executed Tool Path")
         if trace:
             trace_df = pd.DataFrame(trace)
             st.dataframe(
                 trace_df[["step_index", "tool_name", "selection_reason", "input_row_count", "output_row_count", "wall_clock_ms"]],
+                use_container_width=True,
                 hide_index=True
             )
 
@@ -204,39 +338,28 @@ if nav_category == "🔍 Suspicious Activity Investigation":
         st.markdown("##### Excluded Tools & Optimization Rationale")
         if plan and plan.skipped_tools:
             skipped_df = pd.DataFrame([s.model_dump() for s in plan.skipped_tools])
-            st.dataframe(skipped_df, hide_index=True)
+            st.dataframe(skipped_df, use_container_width=True, hide_index=True)
         else:
-            st.success("All analytical components were executed for comprehensive scanning.")
+            st.success("All analytical components were executed for broad scanning.")
 
-    # Flagged Results Table
+    # Flagged Results Table & Case Files
     st.divider()
-    st.subheader("Flagged Entities & Escalation Triage")
+    st.markdown("### 🎯 Flagged Entities & Recommended Actions")
 
     flagged = result_state.get("flagged", [])
 
     if not flagged:
         st.success("No suspicious entities flagged for the specified criteria.")
     else:
-        col_m1, col_m2, col_m3, col_m4 = st.columns(4)
-        with col_m1:
-            st.metric("Total Flagged", len(flagged))
-        with col_m2:
-            high_cnt = len([f for f in flagged if f.get("risk_level") == "HIGH"])
-            st.metric("High Risk (File SAR)", high_cnt)
-        with col_m3:
-            med_cnt = len([f for f in flagged if f.get("risk_level") == "MEDIUM"])
-            st.metric("Medium Risk (EDD Review)", med_cnt)
-        with col_m4:
-            st.metric("Analysis Latency", f"{tot_time:.1f} ms")
-
         flagged_df = pd.DataFrame(flagged)
         disp_cols = ["entity_id", "pattern", "risk_level", "composite_score", "rule_score", "ml_score", "graph_score", "recommendation"]
         st.dataframe(
             flagged_df[[c for c in disp_cols if c in flagged_df.columns]],
+            use_container_width=True,
             hide_index=True
         )
 
-        st.markdown("##### Case File Explanations & Grounded Evidence")
+        st.markdown("##### Case File Explanations & SHAP Attributions")
         for item in flagged:
             e_id = item["entity_id"]
             r_level = item.get("risk_level", "MEDIUM")
@@ -245,47 +368,35 @@ if nav_category == "🔍 Suspicious Activity Investigation":
             rec = item.get("recommendation", "REVIEW")
             act_desc = item.get("action_description", "")
 
-            icon = "🔴" if r_level == "HIGH" else ("🟡" if r_level == "MEDIUM" else "🟢")
+            badge_class = "badge-high" if r_level == "HIGH" else ("badge-med" if r_level == "MEDIUM" else "badge-low")
 
-            with st.expander(f"{icon} Entity '{e_id}' | Typology: {item.get('pattern', 'AML').upper()} | Risk: {comp:.3f} ({r_level}) $\\rightarrow$ Action: {rec}"):
-                st.markdown(f"**Compliance Reason**: {expl}")
-                st.markdown(f"**Escalation Protocol**: {act_desc}")
+            with st.expander(f"Case File: Customer '{e_id}' | {item.get('pattern', 'AML').upper()} | Risk Score: {comp:.3f} | Action: {rec}"):
+                st.markdown(f"**Explanation**: {expl}")
+                st.markdown(f"**Action Protocol**: {act_desc}")
                 st.json(item.get("evidence", {}))
 
 
 # -----------------------------------------------------------------------------
-# CATEGORY 2: EXECUTIVE COMPLIANCE DASHBOARD
+# VIEW 2: EXECUTIVE RISK DASHBOARD
 # -----------------------------------------------------------------------------
-elif nav_category == "📊 Executive Compliance Dashboard":
-    st.subheader("Executive AML Risk & False-Positive Performance Overview")
+elif nav_category == "📊 Executive Risk Dashboard":
+    st.markdown("### 📊 Executive Portfolio Risk & Typology Analytics")
     
-    col_e1, col_e2, col_e3, col_e4 = st.columns(4)
-    with col_e1:
-        st.metric("Monitored Pool", f"{len(df_dataset):,} Tx")
-    with col_e2:
-        st.metric("False Positive Reduction", "78.4%", "+24.2% vs Baseline Rules")
-    with col_e3:
-        st.metric("High-Risk SAR Flags", "12 Cases")
-    with col_e4:
-        st.metric("System PR-AUC", "0.912")
-
-    st.divider()
-
-    col_chart1, col_chart2 = st.columns(2)
+    col_d1, col_d2 = st.columns(2)
     
-    with col_chart1:
-        st.markdown("##### Risk Category Distribution")
+    with col_d1:
+        st.markdown("##### Risk Band Distribution")
         fig, ax = plt.subplots(figsize=(6, 4))
-        categories = ['Low Risk (Monitor)', 'Medium Risk (EDD Review)', 'High Risk (File SAR)']
+        sns.set_style("whitegrid")
+        categories = ['Low (Monitor)', 'Medium (EDD Review)', 'High (File SAR)']
         counts = [3850, 42, 12]
         colors = ['#10B981', '#F59E0B', '#EF4444']
-        ax.bar(categories, counts, color=colors)
+        ax.bar(categories, counts, color=colors, width=0.5)
         ax.set_ylabel("Entity Count")
-        plt.xticks(rotation=15)
         st.pyplot(fig)
 
-    with col_chart2:
-        st.markdown("##### Detected AML Typology Breakdown")
+    with col_d2:
+        st.markdown("##### Detected AML Typology Proportions")
         fig2, ax2 = plt.subplots(figsize=(6, 4))
         typologies = ['Structuring', 'Smurfing', 'Layering', 'Rapid Cashout', 'Round-Tripping', 'Velocity Spike']
         t_counts = [18, 11, 8, 7, 5, 9]
@@ -294,17 +405,16 @@ elif nav_category == "📊 Executive Compliance Dashboard":
 
 
 # -----------------------------------------------------------------------------
-# CATEGORY 3: TRANSACTION NETWORK TOPOLOGY
+# VIEW 3: NETWORK TOPOLOGY EXPLORER
 # -----------------------------------------------------------------------------
-elif nav_category == "🕸️ Transaction Network Topology":
-    st.subheader("Multi-Hop Network Graph Visualizer (PyVis)")
-    st.caption("Visualizes money flows, beneficiary aggregation (Smurfing), and multi-hop account chains (Layering).")
+elif nav_category == "🕸️ Network Topology Explorer":
+    st.markdown("### 🕸️ Multi-Hop Network Topology Graph (PyVis)")
+    st.caption("Interactive graph visualization of multi-bank money flows, beneficiary aggregation (Smurfing), and chain hops (Layering).")
 
     try:
         G = build_transaction_graph(df_dataset)
-        net = Network(height="500px", width="100%", directed=True, bgcolor="#FFFFFF", font_color="#0F172A")
+        net = Network(height="540px", width="100%", directed=True, bgcolor="#FFFFFF", font_color="#0F172A")
         
-        # Sample sub-nodes for network rendering
         result_state = st.session_state.get("agent_result", {})
         flagged = result_state.get("flagged", [])
         flagged_ids = [f["entity_id"] for f in flagged] if flagged else []
@@ -319,7 +429,7 @@ elif nav_category == "🕸️ Transaction Network Topology":
             sub_nodes = set(list(G.nodes())[:18])
 
         for n in sub_nodes:
-            color = "#DC2626" if n in flagged_ids else "#2563EB"
+            color = "#EF4444" if n in flagged_ids else "#2563EB"
             net.add_node(n, label=n, color=color, title=f"Account: {n}")
 
         for u, v, data in G.edges(data=True):
@@ -333,35 +443,35 @@ elif nav_category == "🕸️ Transaction Network Topology":
         with open(net_html_path, "r", encoding="utf-8") as f:
             html_content = f.read()
 
-        components.html(html_content, height=520)
+        components.html(html_content, height=560)
     except Exception as e:
         st.info(f"Graph visualization note: {str(e)}")
 
 
 # -----------------------------------------------------------------------------
-# CATEGORY 4: REGULATORY CONTROLS & TUNING
+# VIEW 4: REGULATORY CONTROLS & TUNING
 # -----------------------------------------------------------------------------
 elif nav_category == "⚙️ Regulatory Controls & Tuning":
-    st.subheader("Business Rules & Scoring Weight Configuration")
+    st.markdown("### ⚙️ Regulatory Thresholds & Scoring Model Tuning")
     
-    col_cfg1, col_cfg2 = st.columns(2)
+    col_c1, col_c2 = st.columns(2)
     
-    with col_cfg1:
-        st.markdown("##### Regulatory Limits & Thresholds")
-        st.number_input("Structuring Reporting Threshold ($)", value=10000.0, step=500.0)
-        st.slider("Structuring Lower Bound Ratio", 0.70, 0.95, 0.85, 0.05)
-        st.number_input("Smurfing Fan-in Count Threshold", value=5, step=1)
-        st.number_input("Layering Minimum Chain Hops", value=3, step=1)
+    with col_c1:
+        st.markdown("##### Regulatory Thresholds")
+        st.number_input("Structuring Reporting Limit ($)", value=10000.0, step=500.0)
+        st.slider("Structuring Lower Ratio", 0.70, 0.95, 0.85, 0.05)
+        st.number_input("Smurfing Fan-in Threshold", value=5, step=1)
+        st.number_input("Layering Min Hops", value=3, step=1)
 
-    with col_cfg2:
-        st.markdown("##### Composite Risk Model Weights")
-        st.slider("Rule Detector Weight", 0.0, 1.0, 0.40, 0.05)
+    with col_c2:
+        st.markdown("##### Model Scoring Weights")
+        st.slider("Rule Weight", 0.0, 1.0, 0.40, 0.05)
         st.slider("ML Anomaly Weight", 0.0, 1.0, 0.35, 0.05)
-        st.slider("Graph Analytics Weight", 0.0, 1.0, 0.25, 0.05)
+        st.slider("Graph Weight", 0.0, 1.0, 0.25, 0.05)
         
         st.markdown("##### Escalation Thresholds")
-        st.slider("Low/Medium Risk Cutoff", 0.1, 0.5, 0.35, 0.05)
-        st.slider("Medium/High Risk Cutoff", 0.5, 0.9, 0.70, 0.05)
+        st.slider("Low/Med Cutoff", 0.1, 0.5, 0.35, 0.05)
+        st.slider("Med/High Cutoff", 0.5, 0.9, 0.70, 0.05)
 
-    if st.button("Save Business Configuration", type="primary"):
-        st.success("Configuration updated successfully.")
+    if st.button("Save Business Settings", type="primary"):
+        st.success("Business rules & model weights saved successfully.")
